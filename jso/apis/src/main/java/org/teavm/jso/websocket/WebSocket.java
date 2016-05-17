@@ -20,8 +20,6 @@ import org.teavm.jso.dom.events.EventTarget;
 import org.teavm.jso.typedarrays.ArrayBuffer;
 import org.teavm.jso.typedarrays.ArrayBufferView;
 
-
-
 /**
  * 
  * @author Vyacheslav Tretyakov
@@ -43,7 +41,24 @@ public interface WebSocket extends EventTarget {
     int OPEN = 1;
     int CLOSING = 2;
     int CLOSED = 3;
+    
+    // close code
+    int CLOSE_NORMAL = 1000;
+    int CLOSE_GOING_AWAY = 1001;
+    int CLOSE_PROTOCOL_ERROR = 1002;
+    int CLOSE_UNSUPPORTED = 1003;
+    int CLOSE_NO_STATUS = 1005;
+    int CLOSE_ABNORMAL = 1006;
+    int CLOSE_UNSUPPORTED_DATA = 1007;
+    int CLOSE_POLICY_VIOLATION = 1008;
+    int CLOSE_TOO_LARGE = 1009;
+    int CLOSE_MISSING_EXTENSION = 1010;
+    int CLOSE_INTERNAL_ERROR = 1011;
+    int CLOSE_SERVICE_RESTART = 1012;
+    int CLOSE_TRY_AGAIN_LATER = 1013;
+    
 
+    
     /**
      * 
      * @return
@@ -112,7 +127,20 @@ public interface WebSocket extends EventTarget {
     void send(ArrayBufferView data);
 
     /**
-    *
-    */
+     * 
+     */
     void close();
+
+    /**
+     * 
+     * @param code
+     */
+    void close(int code);
+    
+    /**
+     * 
+     * @param code
+     * @param reason
+     */
+    void close(int code, String reason);
 }
